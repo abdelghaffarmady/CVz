@@ -3,7 +3,7 @@ import  {faker} from "@faker-js/faker";
 
 describe("Job Seeker Sign Up",()=>{
     it("Sign up Succsessfully as jobseeker",()=>{
-        cy.visit("/")
+        cy.visit("https://pre-cveeez.azurewebsites.net/auth/job-seeker-registration")
        /*cy.contains("Register",{ timeout: 10000 }).click()
         cy.get("#flexRadioDefault1").click()
         cy.contains("Next").click()*/
