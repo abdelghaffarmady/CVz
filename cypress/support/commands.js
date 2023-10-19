@@ -25,3 +25,14 @@ Cypress.Commands.add("generateEmployer", () => {
     descrpion: `${faker.lorem.words(20)}`,
   });
 });
+
+Cypress.Commands.add("generateJobSeeker", () => {
+  const faker = require("faker");
+
+  cy.writeFile("cypress/fixtures/jobSeeker.json", {
+    jobSeekerName: `${faker.name()}`,
+    jobSeekerEmail: `${faker.internet.email()}`,
+    jobSeekerMobileNumber: `${faker.phone.phoneNumberFormat()}`,
+    password: "Soforx@123",
+  });
+});

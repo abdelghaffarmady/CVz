@@ -1,6 +1,6 @@
 describe("Employer Registration", () => {
   beforeEach(() => {
-    cy.generateEmployer();
+    cy.generateFixture();
   });
   it("the employer should be able to create a new account", () => {
     cy.fixture("employer").then((employer) => {
