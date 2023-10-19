@@ -2,7 +2,7 @@ describe("Employer Registration", () => {
   beforeEach(() => {
     cy.generateEmployer();
   });
-  it("the employer should be able to create a new account", () => {
+  it("As an employer, I want to create a new account", () => {
     cy.fixture("employer").then((employer) => {
       let _ = require("lodash");
       cy.visit("/auth/agent-registration");
