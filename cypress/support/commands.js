@@ -8,7 +8,7 @@
 // https://on.cypress.io/custom-commands
 // ***********************************************
 
-Cypress.Commands.add("generateFixture", () => {
+Cypress.Commands.add("generateEmployer", () => {
   const faker = require("faker");
 
   cy.writeFile("cypress/fixtures/employer.json", {
