@@ -25,12 +25,12 @@ Cypress.Commands.add("generateEmployer", () => {
     descrpion: `${faker.lorem.words(20)}`,
   });
 });
-
+// JobSeeker Faker Generate
 Cypress.Commands.add("generateJobSeeker", () => {
   const faker = require("faker");
 
   cy.writeFile("cypress/fixtures/jobSeeker.json", {
-    jobSeekerName: `${faker.name()}`,
+    jobSeekerName: `${faker.name.firstName()}`,
     jobSeekerEmail: `${faker.internet.email()}`,
     jobSeekerMobileNumber: `${faker.phone.phoneNumberFormat()}`,
     password: "Soforx@123",

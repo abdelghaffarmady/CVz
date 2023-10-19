@@ -18,7 +18,9 @@ describe("Job Seeker Sign Up", () => {
       cy.get("img[class='dorpdown__icon']").click();
       cy.contains("+20").click();
 
-      cy.get("#mobileNumber").type(jobSeeker.jobSeekerMobileNumber);
+      cy.get("#mobileNumber").type("1000203235");
+      //cy.get("#mobileNumber").type(jobSeeker.jobSeekerMobileNumber);
+
 
       cy.get("input[formcontrolname='email']").type(jobSeeker.jobSeekerEmail);
 
