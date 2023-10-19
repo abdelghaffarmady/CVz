@@ -7,19 +7,21 @@
 // commands please read more here:
 // https://on.cypress.io/custom-commands
 // ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add("generateFixture", () => {
+  const faker = require("faker");
+
+  cy.writeFile("cypress/fixtures/employer.json", {
+    representativeName: `${faker.name.firstName()} ${faker.name.lastName()}`,
+    representativePosition: `${faker.name.jobTitle()}`,
+    representativeEmail: `${faker.internet.email()}`,
+    representativeMobileNumber: `${faker.phone.phoneNumberFormat()}`,
+    password: "Soforx@123",
+    employerName: `${faker.company.bsBuzz()}`,
+    employerMobileNumber: `${faker.phone.phoneNumberFormat()}`,
+    employerEmail: `${faker.internet.email()}`,
+    commercialNo: `${faker.datatype.number()}`,
+    date: `${new Date().toISOString().slice(0, 10)}`,
+    descrpion: `${faker.lorem.words(20)}`,
+  });
+});
