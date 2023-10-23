@@ -73,6 +73,12 @@ describe("Create new job post", () => {
             _.sample([1, 2, 3, 4])
           );
 
+          cy.get(
+            "input[id='commercialRegistertionNoImageStorageFileName']"
+          ).selectFile("cypress/fixtures/files/jobDetails.png", {
+            force: true,
+          });
+
           cy.contains("Send to the Admin")
             .click()
             .then(() => {

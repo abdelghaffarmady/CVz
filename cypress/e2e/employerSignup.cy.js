@@ -28,7 +28,7 @@ describe("Employer Registration", () => {
 
       //get random number  from 1 to 10
       cy.get("select[formcontrolname='countryId']").select(
-        _.sample([1, 2, 4, 5, 6, 7, 8, 9, 10])
+        _.sample([1, 2, 4, 5, 6, 7, 8, 9])
       );
       cy.get("input[formcontrolname='password']").type(employer.password);
       cy.get("input[formcontrolname='passwordConfirm']").type(
@@ -52,10 +52,22 @@ describe("Employer Registration", () => {
       cy.get("textarea").type(employer.descrpion);
       cy.get("#flexCheckChecked").check();
       cy.get("#flexCheckDefault2").check();
+
+      cy.get("input[id='commercialRegistertionNoImageStorageFileName']")
+        .selectFile("cypress/fixtures/files/employerCR.pdf", {
+          force: true,
+        })
+        .then((x) => {
+          cy.get("input[id='logoImageStorageFileName']").selectFile(
+            "cypress/fixtures/files/employerLogo.png",
+            {
+              force: true,
+            }
+          );
+        });
       cy.contains("Save")
         .click()
         .then((x) => {
-          cy.wait(3000);
           cy.get(".modal-body").should(
             "contain",
             "Your Account Registered Successfully"
