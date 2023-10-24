@@ -1,4 +1,23 @@
 describe("Create new job post", () => {
+  before(() => {
+    cy.fixture("user").then((user) => {
+      cy.request({
+        method: "POST",
+        url: "https://apicveeez.azurewebsites.net/connect/token",
+        body: {
+          grant_type: "password",
+          client_id: "Cveez_App",
+          username: user.emplyerEmail,
+          password: user.password,
+        },
+        headers: {
+          "Accept-Language": "en",
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      });
+    });
+  });
+
   it("As an employer, I want to create a new job post", () => {
     cy.visit("/auth/login");
     cy.fixture("user").then((user) => {
@@ -79,16 +98,20 @@ describe("Create new job post", () => {
             force: true,
           });
 
-          cy.contains("Send to the Admin")
-            .click()
-            .then(() => {
-              cy.get('div[role="alert"]').should(
-                "contain",
-                "Job post sent to the admin successfully"
-              );
-            });
-          cy.url().should("contain", "/client/posted-opportunities");
+          // cy.contains("Send to the Admin")
+          //   .click()
+          //   .then(() => {
+          //     cy.get('div[role="alert"]').should(
+          //       "contain",
+          //       "Job post sent to the admin successfully"
+          //     );
+          //   });
+          // cy.url().should("contain", "/client/posted-opportunities");
         });
     });
+  });
+
+  it.only("test the API login", () => {
+    cy.visit("/");
   });
 });

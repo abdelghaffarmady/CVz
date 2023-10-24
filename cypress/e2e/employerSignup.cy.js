@@ -65,6 +65,7 @@ describe("Employer Registration", () => {
             }
           );
         });
+      cy.wait(3000);
       cy.contains("Save")
         .click()
         .then((x) => {
