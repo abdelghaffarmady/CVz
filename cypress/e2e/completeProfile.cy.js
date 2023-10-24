@@ -3,21 +3,11 @@ it("Copmlete JobSeeker Profile",()=>{
     cy.visit("/auth/login")
     let _ = require("lodash");
 
- /*    cy.request({
-        url: "api/app/manage-account/current-user",
-        failOnStatusCode: false,
-        method:"Get",
-        body:{
-            email: "luigi1130@wremail.xyz",
-            password: "Soforx@123" ,
-        }
-    }); */
-
     cy.get("input[formcontrolname='email']").type("luigi1130@wremail.xyz")
     cy.get("input[formcontrolname='password']").type("Soforx@123")
-    cy.get("button[id='kt_sign_in_submit']",{timeout: 10000}).click()
-/*
-    cy.get("label[id='continue-step2']",{timeout: 10000}).click()
+    cy.get("button[id='kt_sign_in_submit']",).click()
+
+  /*   cy.get("label[id='continue-step2']",{timeout: 10000}).click()
 
     cy.get("input[formcontrolname='birthDate']").type("1995-02-27","{enter}")
 
@@ -67,13 +57,13 @@ it("Copmlete JobSeeker Profile",()=>{
     cy.get("textarea[formcontrolname='summary']").type("In publishing and graphic design Lorem ipsum is a placeholder text commonly used to demonstrate  a placeholder before final copy is available")
     cy.contains("Save").click() 
     cy.url().should("contain","/auth/payment-package")
- */
+  */
     //Package Step
     cy.contains("3weeks").click()
      cy.get("button[class='ng-star-inserted']").eq(5).click()
-     cy.get("div[class='overlayView active']").should("be.visible")
-    cy.get("#email]").eq(0).click({force:true}).type("abdelghaffarmady@gmail.com")
-    cy.get("input[id='card_number']").type("4111 1111 1111 1111")
+     cy.get("div[class='overlayView active']").click({force:true})
+    cy.get("input[id='email']").type("abdelghaffarmady@gmail.com",{force:true})
+    cy.get("input[id='card_number']").type("4111 1111 1111 1111",{force:true})
     cy.get("input[id='cc-exp']").type("12 / 23")
     cy.get("input[id='cc-csc']").type("123")
     cy.get('button[id="submitButton"]').click()
