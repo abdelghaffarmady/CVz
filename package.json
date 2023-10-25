@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "cypress-file-upload": "^5.0.8",
+    "cypress-plugin-stripe-elements": "^1.0.2",
     "faker": "^5.5.3"
   },
   "devDependencies": {

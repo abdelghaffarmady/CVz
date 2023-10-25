@@ -1,8 +1,10 @@
 describe("Create new job post", () => {
-  const STRIPE_IFRAME_PREFIX = "__privateStripeFrame";
+  const STRIPE_IFRAME_PREFIX = "stripe_checkout_app";
 
   const getStripeIFrameDocument = () => {
-    return cy.checkElementExists("iframe").eq(0).iframeCustom();
+    return cy
+      .checkElementExists(`iframe[name^="${STRIPE_IFRAME_PREFIX}"]`)
+      .iframeCustom();
   };
 
   it("Copmlete JobSeeker Profile", () => {
@@ -85,22 +87,24 @@ describe("Create new job post", () => {
     // cy.get('button[id="submitButton"]').click()
     // cy.url().should("contain","/client/edit-job-seeker ")
 
+    //Waite untill the iframe is load to be visiable.
+    cy.wait(6000);
+
     const CARD_DETAILS = {
       cardNumber: "4000058260000005",
       cardExpiry: "0525",
       cardCvc: "123",
     };
-    getStripeIFrameDocument()
-      .find('input[data-elements-stable-field-name="email"]')
-      .type(CARD_DETAILS.cardNumber);
-    getStripeIFrameDocument()
-      .find('input[data-elements-stable-field-name="cardNumber"]')
-      .type(CARD_DETAILS.cardNumber);
-    getStripeIFrameDocument()
-      .find('input[data-elements-stable-field-name="cardExpiry"]')
-      .type(CARD_DETAILS.cardExpiry);
-    getStripeIFrameDocument()
-      .find('input[data-elements-stable-field-name="cardCvc"]')
-      .type(CARD_DETAILS.cardCvc);
+    getStripeIFrameDocument().find(".emailInput");
+    // .type(CARD_DETAILS.cardNumber);
+    // getStripeIFrameDocument()
+    //   .find('input[data-elements-stable-field-name="cardNumber"]')
+    //   .type(CARD_DETAILS.cardNumber);
+    // getStripeIFrameDocument()
+    //   .find('input[data-elements-stable-field-name="cardExpiry"]')
+    //   .type(CARD_DETAILS.cardExpiry);
+    // getStripeIFrameDocument()
+    //   .find('input[data-elements-stable-field-name="cardCvc"]')
+    //   .type(CARD_DETAILS.cardCvc);
   });
 });

@@ -27,5 +27,5 @@ Cypress.Commands.add("iframeCustom", { prevSubject: "element" }, ($iframe) => {
 });
 
 Cypress.Commands.add("checkElementExists", (selector) => {
-  return cy.get(selector).should("exist").then(cy.wrap);
+  return cy.get(selector).eq(1).should("exist").then(cy.wrap);
 });
