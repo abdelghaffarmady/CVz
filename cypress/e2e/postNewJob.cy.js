@@ -1,4 +1,4 @@
-describe("Create new job post", () => {
+describe("Job Post Management", () => {
   before(() => {
     cy.fixture("user").then((user) => {
       cy.request({

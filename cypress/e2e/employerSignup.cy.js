@@ -1,4 +1,4 @@
-describe("Employer Registration", () => {
+describe("Registration", () => {
   beforeEach(() => {
     cy.generateEmployer();
   });
