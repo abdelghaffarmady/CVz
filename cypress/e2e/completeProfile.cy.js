@@ -1,6 +1,10 @@
 describe("Create new job post", () => {
+  const STRIPE_IFRAME_PREFIX = "stripe_checkout_app";
+
   const getStripeIFrameDocument = () => {
-    return cy.switchToIframe(`iframe[name="stripe_checkout_app"]`);
+    return cy
+      .checkElementExists(`iframe[name^="${STRIPE_IFRAME_PREFIX}"]`)
+      .iframeCustom();
   };
 
   it("Copmlete JobSeeker Profile", () => {
@@ -17,7 +21,7 @@ describe("Create new job post", () => {
           }
       }); */
 
-    cy.get("input[formcontrolname='email']").type("jajsnsls@azaloptions.com");
+    cy.get("input[formcontrolname='email']").type("luigi1130@wremail.xyz");
     cy.get("input[formcontrolname='password']").type("Soforx@123");
     cy.get("button[id='kt_sign_in_submit']", { timeout: 10000 }).click();
     /*
@@ -84,26 +88,23 @@ describe("Create new job post", () => {
     // cy.url().should("contain","/client/edit-job-seeker ")
 
     //Waite untill the iframe is load to be visiable.
-    cy.wait(3000);
-    cy.fixture("paymentCard").then((card) => {
-      getStripeIFrameDocument().find('input[id="email"]').type(card.email);
-      getStripeIFrameDocument()
-        .find('input[id="card_number"]')
-        .type(card.cardNumber);
-      getStripeIFrameDocument()
-        .find('input[id="cc-exp"]')
-        .type(card.cardExpiry);
-      getStripeIFrameDocument().find('input[id="cc-csc"]').type(card.cardCvc);
-    });
+    cy.wait(6000);
 
+    const CARD_DETAILS = {
+      cardNumber: "4000058260000005",
+      cardExpiry: "0525",
+      cardCvc: "123",
+    };
+    getStripeIFrameDocument().find(".emailInput");
+    // .type(CARD_DETAILS.cardNumber);
     // getStripeIFrameDocument()
-    //   .find('button[id="submitButton"]')
-    //   .click()
-    //   .then(() => {
-    //     cy.get('div[role="alert"]').should(
-    //       "contain",
-    //       "Package selected successfully"
-    //     );
-    //   });
+    //   .find('input[data-elements-stable-field-name="cardNumber"]')
+    //   .type(CARD_DETAILS.cardNumber);
+    // getStripeIFrameDocument()
+    //   .find('input[data-elements-stable-field-name="cardExpiry"]')
+    //   .type(CARD_DETAILS.cardExpiry);
+    // getStripeIFrameDocument()
+    //   .find('input[data-elements-stable-field-name="cardCvc"]')
+    //   .type(CARD_DETAILS.cardCvc);
   });
 });

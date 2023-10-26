@@ -18,3 +18,14 @@ import "./commands";
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
+Cypress.Commands.add("iframeCustom", { prevSubject: "element" }, ($iframe) => {
+  return new Cypress.Promise((resolve) => {
+    $iframe.ready(function () {
+      resolve($iframe.contents().find("body"));
+    });
+  });
+});
+
+Cypress.Commands.add("checkElementExists", (selector) => {
+  return cy.get(selector).eq(1).should("exist").then(cy.wrap);
+});
